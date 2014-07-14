@@ -3,7 +3,8 @@
 
 #include "HashItem.h"
 
-#define STARTING_SIZE 256
+// Best to keep this as a prime number for easy hash calculations.
+#define STARTING_SIZE 251
 
 class HashTable
 {
@@ -11,14 +12,14 @@ public:
 	HashTable();
 	HashTable(int startingSize);
 
-	void addItem(int key, std::string value);
-	const std::string getValue(int key);
+	void addItem(std::string key, std::string value);
+	const std::string getValue(std::string key);
 
 private:
 	HashItem* items;
 	int size;
 
-	int getHash(int key);
+	int getHash(const char* key);
 };
 
 #endif

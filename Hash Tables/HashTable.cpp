@@ -11,27 +11,37 @@ HashTable::HashTable(int startingSize)
 	this->size = startingSize;
 }
 
-void HashTable::addItem(int key, std::string value)
+void HashTable::addItem(std::string key, std::string value)
 {
-	int hashedKey = this->getHash(key);
+	int hashedKey = this->getHash(key.c_str());
 
-	this->items[hashedKey].setKey(key);
-	this->items[hashedKey].setValue(value);
+	if (this->items[hashedKey].getKey() == "")
+	{
+		this->items[hashedKey].setKey(key);
+		this->items[hashedKey].setValue(value);
+	}
 }
 
-const std::string HashTable::getValue(int key)
+const std::string HashTable::getValue(std::string key)
 {
-	int hashedKey = this->getHash(key);
+	int hashedKey = this->getHash(key.c_str());
 
 	return this->items[hashedKey].getValue();
 }
 
-int HashTable::getHash(int key)
+int HashTable::getHash(const char* key)
 {
-	// Note taht get hash here does nothing special at all and simply
-	// returns the key.  Normally, you would actually hash a string (or
-	// other object) here and use the integer value for that.  I may
-	// update this in the future with such a design, but for now I am
-	// simply doing this out of laziness.....
-	return key;
+	// First two prime numbers ared used in calculating the hash.
+	unsigned int primeA = 3;
+	unsigned int primeB = 5;
+
+	// The hash also should start as a prime number.  This helps with generating unique
+	// keys.
+	unsigned int hash = 31;
+	while (*key)
+	{
+		hash = (hash * primeA) ^ (key[0] * primeB);
+		key += 1;
+	}
+	return hash % STARTING_SIZE;
 }

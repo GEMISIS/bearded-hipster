@@ -8,10 +8,10 @@ class HashItem
 public:
 	void setValue(std::string value);
 	const std::string getValue();
-	void setKey(int key);
-	const int getKey();
+	void setKey(std::string key);
+	const std::string getKey();
 private:
-	int key;
+	std::string key;
 	std::string value;
 };
 

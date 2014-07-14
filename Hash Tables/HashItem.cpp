@@ -10,12 +10,12 @@ const std::string HashItem::getValue()
 	return this->value;
 }
 
-void HashItem::setKey(int key)
+void HashItem::setKey(std::string key)
 {
 	this->key = key;
 }
 
-const int HashItem::getKey()
+const std::string HashItem::getKey()
 {
 	return this->key;
 }

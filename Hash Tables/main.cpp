@@ -18,25 +18,28 @@ int main()
 {
 	HashTable* table = new HashTable();
 
-	int key = 0;
+	string key = "";
 	string value = "";
-	while (value != "done")
+	while (key != "done")
 	{
 		cout << "Enter a key: ";
 		cin >> key;
-		cout << "Enter a value: ";
-		cin >> value;
-		cout << "Key: " << key << " Value: " << value << "\n";
-		table->addItem(key, value);
+		if (key != "done")
+		{
+			cout << "Enter a value: ";
+			cin >> value;
+			cout << "Key: " << key << " Value: " << value << "\n";
+			table->addItem(key.c_str(), value);
+		}
 	}
 	cout << "\n" << "Enter -1 to quit!" << "\n" << "\n";
-	while (key > -1)
+	while (key != "quit")
 	{
 		cout << "Enter a key to find the value to: ";
 		cin >> key;
-		if (key > -1)
+		if (key != "")
 		{
-			cout << "Value associated with key " << key << ": " << table->getValue(key).c_str() << "\n";
+			cout << "Value associated with key " << key << ": " << table->getValue(key.c_str()).c_str() << "\n";
 		}
 	}
 	return 0;
